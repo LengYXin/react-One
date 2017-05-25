@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <title>员工个人信息录入</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/swiper/dist/css/swiper.min.css">
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .swiper-wrapper {
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            /*text-align: center;
+            font-size: 18px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;*/
+            background: #fff;
+            /*height: 100%;*/
+            /*padding: 0 50px;*/
+            /*overflow-y: auto;*/
+        }
+        
+        .swiper-slide.swiper-conter {
+            text-align: center;
+            font-size: 18px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="example"></div>
+    <!-- Slider main container -->
+    <div class="swiper-container" id="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide swiper-conter">
+                <h1>员工信息录入</h1>
+            </div>
+            <div class="swiper-slide">
+                <!--<div class="swiper-container swiper-container-vertical swiper-container-free-mode" id="i-c1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-active" style="height:1000px">-->
+                <div class="container">
+                    <div class="page-header">
+                        <h1>个人信息</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">姓名</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">出生日期</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">婚姻状况</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">有无子女</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">民族</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">政治面貌</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">籍贯</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">职称</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">档案所在地</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--</div>
+                    </div>
+                    <div class="swiper-scrollbar" style="opacity: 0;">
+                        <div class="swiper-scrollbar-drag" style="height: 176.4px;"></div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>户口信息</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">户口类别</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">户口所在地</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-12">
+                            <label class="col-sm-2 control-label">邮政编码</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-12">
+                            <label class="col-sm-2 control-label">户口地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>联系方式</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">家庭电话</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">手机</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">邮政编码</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">电子邮箱</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-12">
+                            <label class="col-sm-2 control-label">现居住地</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="page-header">
+                        <h1>紧急联系人</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">联系人姓名</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">电话</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>填写家庭成员</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>姓名：</th>
+                                    <th>关系：</th>
+                                    <th>工作单位：</th>
+                                    <th>职务：</th>
+                                    <th>联系方式：</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <button type="button" class="btn btn-xs">添加</button><button type="button" class="btn btn-xs">删除</button> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>填写教育信息</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>学历性质：</th>
+                                    <th>开始日期：</th>
+                                    <th>结束日期：</th>
+                                    <th>学校姓名：</th>
+                                    <th>学历：</th>
+                                    <th>学位：</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>驾照信息</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">有无驾照</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-lg-6">
+                            <label class="col-sm-4 control-label">有无用车</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>工作经历</h1>
+                    </div>
+                    <div class="form-horizontal">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>开始日期：</th>
+                                    <th>结束日期：</th>
+                                    <th>单位名称：</th>
+                                    <th>职务：</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                    <td> <input type="text" class="form-control"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-primary btn-lg ">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <!-- Dependencies -->
+    <script src="/node_modules/react/dist/react.js"></script>
+    <script src="/node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
+    <!-- Main -->
+    <!--<script src="/www/dist/bundle.js"></script>-->
+    <script>
+        var swiper = new Swiper('#swiper', {
+            direction: 'vertical',
+            pagination: '.swiper-pagination',
+            paginationType: 'progress',
+            nextButton: '.swiper-button-next',
+            roundLengths: true, //防止文字模糊
+            mousewheelControl: true,
+        });
+        // var iSwiper = new Swiper('#i-c1', {
+        //     scrollbar: '.swiper-scrollbar',
+        //     direction: 'vertical',
+        //     slidesPerView: 'auto',
+        //     freeMode: true,
+        //     freeModeMomentum: false,
+        //     mousewheelControl: true,
+        //     mousewheelSensitivity: 0.5,
+        // });
+    </script>
+</body>
+
+</html>

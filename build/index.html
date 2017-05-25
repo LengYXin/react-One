@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>员工个人信息录入</title>
+    <script>
+        ! function() {
+            if (navigator.appName == "Microsoft Internet Explorer") {
+                //   console.log(navigator.appVersion.match(/MSIE -?[1-9]\d*/));
+                try {
+                    if (parseInt((navigator.appVersion.match(/MSIE -?[1-9]\d*/)[0]).match(/[1-9]\d*/)[0]) < 9) {
+                        window.location.href = "/error.html"
+                    }
+                } catch (error) {
+                    window.location.href = "/error.html"
+                }
+            }
+        }();
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="dist/build.js"></script>
+</body>
+
+</html>
