@@ -91,9 +91,9 @@
 .Welcomepages .welcome{padding-top: 100px;padding-bottom: 40px;}
 .Welcomepages h4{font-size: 40px; color:#333; margin-bottom: 20px}
 .Welcomepages h5{font-size: 26px; color: #8fa8c8;}
-.btn_ljjr{width: 240px;height: 60px; background: url(./img/btn_ljjr1.png) no-repeat left top; 
+.btn_ljjr{width: 240px;height: 60px; background: url(img/btn_ljjr1.png) no-repeat left top; 
 display:inline-block; border: none; margin:20px auto; color:#fff;font-size: 24px;  }
-.btn_ljjr:hover{background: url(./img/btn_ljjr2.png) no-repeat left top;}
+.btn_ljjr:hover{background: url(img/btn_ljjr2.png) no-repeat left top;}
 .yx_text{width: 630px; margin: 0 auto;}
 .yx_text p{text-align: left; font-size: 14px; color: #666}
  .swiper-button-next,
