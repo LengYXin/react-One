@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var apiUrl = "http://myhr-uat.daikuan.com/"
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: "./src_Redux/index.tsx",
     output: {
         filename: "build.js",
         path: __dirname + "/www/dist",

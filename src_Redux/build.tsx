@@ -9,8 +9,6 @@ import  "../assets/layer_mobile/layer.css"
 // import  '../node_modules/swiper/dist/css/swiper.min.css';
 import  "../assets/layer_mobile/layer.js";
 import  "../assets/css/style.css";
-import  "../assets/css/entry.css";
-import  "../assets/icomoon/style.css";
 
 import { App } from "./components/App";
 ReactDOM.render(

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface Props { onHandleInputChange?: any; }
+interface Props { onHandleInputChange?: any; User?: any }
 interface Model { [key: string]: any; $valid?: Boolean; }
 interface State { check: Model; Model: { Item: Model[]; $Valid?: Boolean; $ErrorMsg?: string; } }
 
@@ -20,6 +20,27 @@ export class Files extends React.Component<Props, State> {
     // 组件输出已经呈现给DOM后，该钩子就会运行
     componentDidMount() {
         this.props.onHandleInputChange("Files", this.state.Model);
+        // this.setState((prevState: State) => {
+        //     let item: any[] = [];
+        //     try {
+        //         let list: any[] = JSON.parse(this.props.User.files);
+        //         if (list.length) {
+        //             item = list.map(x => {
+        //                 return {
+        //                     name: x.Name,
+        //                     url: x.Url,
+        //                     loaded: 1,
+        //                     size: 1
+        //                 }
+        //             });
+        //         }
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        //     prevState.Model.Item = item;
+        // }, () => {
+        //     this.props.onHandleInputChange("Files", this.state.Model);
+        // });
 
         console.log("文件上传 加载", this);
         this.uploader = new plupload.Uploader({
@@ -82,7 +103,9 @@ export class Files extends React.Component<Props, State> {
     render() {
         return <div className="container text-left">
             <div className="page-header">
-                <h1>文件上传 <button ref="PluploadBtn" type="button" className="btn btn-success">添加文件</button></h1>
+                <h1 className="tit-l-bor ft18 mt10">
+                    <span className="ml10">文件上传  <span style={{ fontSize: "12px" }}> (注：文件不会保存为草稿！)</span></span>
+                </h1>
             </div>
             {/*<div className="list-group text-left">
                 <a href="javascript:void(0)" className="list-group-item ">
@@ -90,12 +113,12 @@ export class Files extends React.Component<Props, State> {
 
                 </a>
             </div>*/}
-            <table className="table table-hover">
-                <thead>
+            <table className="table table-hover table_bg-C">
+                <thead className="c39 ft14">
                     <tr>
                         <th style={{ width: "50%" }}>文件名</th>
                         <th style={{ width: "30%" }}>上传进度</th>
-                        <th></th>
+                        <th className="center"> <a ref="PluploadBtn" type="button" className="btn btn-add">添加文件</a></th>
                     </tr>
                 </thead>
                 <tbody>

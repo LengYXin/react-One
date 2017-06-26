@@ -7,6 +7,21 @@ export let Verification = {
     $Valid: true,
     $ErrorMsg: '个人信息未填写完整'
 };
+export let check = (Model, filterModel: { $Valid: boolean, $ErrorMsg: string, $target: string }, filterFN: Function) => {
+    for (let key in Model) {
+        if (Model.hasOwnProperty(key)) {
+            let eles = Model[key];
+            let fModel = filterFN(key, eles);
+            if (filterModel.$Valid) {
+                filterModel.$ErrorMsg = fModel.$ErrorMsg;
+                filterModel.$Valid = fModel.$Valid;
+                filterModel.$target = fModel.$target;
+            } else {
+
+            }
+        }
+    }
+}
 export let filter = (name: string, value: string) => {
     let Model = {
         $Valid: true,
@@ -22,10 +37,10 @@ export let filter = (name: string, value: string) => {
             Model.$Valid = regularDate.test(value);
             Model.$ErrorMsg = "出生日期格式有误！";
             break;
-        case 'Nation':
-            Model.$Valid = value.length > 0;
-            Model.$ErrorMsg = "名族不可为空！";
-            break;
+        // case 'Nation':
+        //     Model.$Valid = value.length > 0;
+        //     Model.$ErrorMsg = "名族不可为空！";
+        //     break;
         case 'Face':
             Model.$Valid = value.length > 0;
             Model.$ErrorMsg = "政治面貌不可为空！";

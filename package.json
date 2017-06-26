@@ -14,9 +14,14 @@
     "@types/node": "^7.0.18",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.42",
+    "@types/redux": "^3.6.0",
     "plupload": "^2.3.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
     "swiper": "^3.4.2"
   },
   "devDependencies": {
