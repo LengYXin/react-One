@@ -8,6 +8,7 @@
     "init-dev-g": "npm install -g webpack webpack-dev-server gulp --loglevel=http --registry=https://registry.npm.taobao.org",
     "init-dev-link": "npm link webpack webpack-dev-server --loglevel=http --registry=https://registry.npm.taobao.org",
     "init-dep": "npm install --loglevel=http --registry=https://registry.npm.taobao.org",
+    
     "start": "webpack-dev-server --progress --open",
     "build": "webpack --config webpack.build.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +23,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "swiper": "^3.4.2",
-    "typescript": "2.3.4"
+    "typescript":"2.3.4"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.1.3",

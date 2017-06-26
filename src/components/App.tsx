@@ -190,27 +190,24 @@ export class App extends React.Component<Props, State> {
         }
         //填写
         if (this.state.CheckThrough == "FillIn") {
-            return <div>
-                <Back></Back>
-                <SwiperContainer CheckThrough={this.state.CheckThrough}>
-                    <SwiperSlide hash="pl"><Personal ref="Personal" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="rr"><Registered ref="Registered" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="ct"><Contact ref="Contact" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="fy"><Family ref="Family" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
-                    <SwiperSlide hash="en"><Education ref="Education" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
-                    <SwiperSlide hash="dl"><Driving ref="Driving" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="wk"><Work ref="Work" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="pp"><Files ref="Files" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                    <SwiperSlide hash="sm">
-                        <div className="container">
-                            <div className="text-center foot_btn">
-                                <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("submit") }}>提交</button>
-                                <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("draft") }}>保存草稿</button>
-                            </div>
+            return <SwiperContainer CheckThrough={this.state.CheckThrough}>
+                <SwiperSlide hash="pl"><Personal ref="Personal" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="rr"><Registered ref="Registered" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="ct"><Contact ref="Contact" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="fy"><Family ref="Family" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
+                <SwiperSlide hash="en"><Education ref="Education" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
+                <SwiperSlide hash="dl"><Driving ref="Driving" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="wk"><Work ref="Work" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="pp"><Files ref="Files" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                <SwiperSlide hash="sm">
+                    <div className="container">
+                        <div className="text-center foot_btn">
+                            <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("submit") }}>提交</button>
+                            <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("draft") }}>保存草稿</button>
                         </div>
-                    </SwiperSlide>
-                </SwiperContainer>
-            </div>;
+                    </div>
+                </SwiperSlide>
+            </SwiperContainer>;
         }
         //提交
         if (this.state.CheckThrough == "Submit") {

@@ -76,13 +76,13 @@ export function CreateCanvas(eleCanvas) {
         };
 
         function createDots() {
-          for (let i = 0; i < dots.nb; i++) {
+          for (var i = 0; i < dots.nb; i++) {
             dots.array.push(new Dot());
           }
         }
 
         function moveDots() {
-          for (let i = 0; i < dots.nb; i++) {
+          for (var i = 0; i < dots.nb; i++) {
 
             var dot = dots.array[i];
 
@@ -99,10 +99,10 @@ export function CreateCanvas(eleCanvas) {
         }
 
         function connectDots() {
-          for (let i = 0; i < dots.nb; i++) {
-            for (let j = 0; j < dots.nb; j++) {
-             let i_dot = dots.array[i];
-             let  j_dot = dots.array[j];
+          for (var i = 0; i < dots.nb; i++) {
+            for (var j = 0; j < dots.nb; j++) {
+             var i_dot = dots.array[i];
+             var  j_dot = dots.array[j];
 
               if ((i_dot.x - j_dot.x) < dots.distance && (i_dot.y - j_dot.y) < dots.distance && (i_dot.x - j_dot.x) > -dots.distance && (i_dot.y - j_dot.y) > -dots.distance) {
                 if ((i_dot.x - mousePosition.x) < dots.d_radius && (i_dot.y - mousePosition.y) < dots.d_radius && (i_dot.x - mousePosition.x) > -dots.d_radius && (i_dot.y - mousePosition.y) > -dots.d_radius) {
@@ -119,7 +119,7 @@ export function CreateCanvas(eleCanvas) {
         }
 
         function drawDots() {
-          for (let i = 0; i < dots.nb; i++) {
+          for (var i = 0; i < dots.nb; i++) {
             var dot = dots.array[i];
             dot.draw();
           }

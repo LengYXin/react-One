@@ -4,11 +4,11 @@
      position: relative;
      height: 100%;
      min-width: 1200px;
-     background: #fff;
+     /*background: #fff;*/
  }
 
  body {
-     background: #fff;
+     /*background: #fff;*/
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
      font-size: 14px;
      color: #000;
@@ -28,6 +28,7 @@
  .Inspect.swiper-container,
  .Submit.swiper-container {
      height: 100%;
+     position: relative;
  }
 
  .swiper-wrapper {
@@ -297,4 +298,5 @@ display:inline-block; border: none; margin:20px auto; color:#fff;font-size: 24px
  .background-canvas{
      position: absolute;
      top: 0;
+     z-index: 0;
  }
