@@ -2,12 +2,12 @@
     "compilerOptions": {
         "outDir": "./www/dist/",
         "sourceMap": true,
-        "noImplicitAny": false,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "allowJs": true
     },
     "include": [
-        "./src_Redux/index.tsx"
+        "./src/index.tsx"
     ]
 }

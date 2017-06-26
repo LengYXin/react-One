@@ -15,6 +15,7 @@ interface Model {
     PlaceOfOrigin?: any;//籍贯
     // Nickname?: any;     //职称
     Archives?: any      //档案所在地
+    Avatar?: any         //头像
 }
 interface State { Check: Model; Model: Model, Nation: any }
 
@@ -60,6 +61,7 @@ export class Personal extends React.Component<Props, State> {
                 PlaceOfOrigin: "",
                 // Nickname: "",
                 Archives: "",
+                Avatar: ""
             },
             Nation: Nation
         };
@@ -67,6 +69,9 @@ export class Personal extends React.Component<Props, State> {
         this.check = this.check.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.onUpdateChange = this.onUpdateChange.bind(this);
+        this.handleChangeFile = this.handleChangeFile.bind(this);
+
+        this.getUptoken();
     }
     // 更新顶层状态
     onUpdateChange(name?: any, value?: any) {
@@ -91,6 +96,8 @@ export class Personal extends React.Component<Props, State> {
             prevState.Model.PlaceOfOrigin = this.props.User.native_place_chn;
             // prevState.Model.Nickname = this.props.User.jobtitle;
             prevState.Model.Archives = this.props.User.infofile;
+            prevState.Model.Avatar = this.props.User.avatar;
+
         }, () => {
             this.onUpdateChange();
         });
@@ -99,7 +106,7 @@ export class Personal extends React.Component<Props, State> {
     }
     componentDidUpdate() {
     }
-    
+
     handleChange(event: React.ChangeEvent<any>) {
         // Server.Verification.$Valid = true;
         const target = event.target;
@@ -110,6 +117,60 @@ export class Personal extends React.Component<Props, State> {
         if (name == 'Birthday') {
             this.state.Check.Birthday.$Valid = Server.regularDate.test(value);
         }
+    }
+    // 上传头像
+    handleChangeFile(event: React.ChangeEvent<HTMLInputElement>) {
+        console.dir(event.target.files);
+        console.dir(this.refs.avatar);
+
+        let files = event.target.files;
+        let file;
+        if (files.length) {
+            file = files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                console.log(reader);
+                (this.refs.avatar as HTMLImageElement).src = reader.result;
+                let base64 = reader.result;
+                var url = `http://up-z1.qiniu.com/putb64/-1`;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState == 4) {
+                        //这里可以判断图片上传成功,而且可以通过responseText获取图片链接
+                        // console.log(xhr);
+                        var data = JSON.parse(xhr.response);
+                        this.setState((prevState: State) => {
+                            prevState.Model.Avatar = "/images/" + data.key;
+                        }, () => {
+                            this.onUpdateChange();
+                        });
+                        // console.log("data", data.key);
+                        //图片链接就是yourcdnpath.xx/data.key
+                        // document.getElementById("myDiv").innerHTML = xhr.responseText;
+                    }
+                }
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/octet-stream");
+                xhr.setRequestHeader("Authorization", "UpToken " + this.uptoken);
+                xhr.send(base64.replace(/data:image\/.*;base64,/, ""));
+            }
+        } else {
+
+        }
+
+    }
+    // 获取  七牛  uptoken
+    uptoken;
+    getUptoken() {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+            let response = JSON.parse(xhr.response);
+            this.uptoken = response.uptoken;
+        };
+        ///xhr.open('GET', "/api/user/find?code=" + this.Code);
+        xhr.open('GET', "/api/sys/uptoken");
+        xhr.send();
     }
     // 验证输入
     check(name?: string) {
@@ -165,6 +226,14 @@ export class Personal extends React.Component<Props, State> {
                 <h1 className="tit-l-bor ft18 mt10"><span className="ml10">个人信息</span></h1>
             </div>
             <div className="form-horizontal text-left">
+                <div className="form-group col-xs-12" style={{ paddingRight: " 45px" }}>
+                    <label className="col-sm-2 control-label c39 ft14">头像</label>
+                    <div className="col-sm-10 user-avatar">
+                        <img ref="avatar" src={(this.props.User.avatar || "./img/tx.png") +"?imageView2/2/w/150/q/150/format/png"} className="img-circle" />
+                        <input type="file" accept="image/*" onChange={this.handleChangeFile} />
+                        <p className="c39">点击头像上传照片</p>
+                    </div>
+                </div>
                 <div className={!this.state.Check.Name.$Valid ? 'form-group col-xs-6 has-error' : 'form-group col-xs-6'} >
                     <label className="col-sm-4 control-label c39 ft14">姓名</label>
                     <div className="col-sm-8">

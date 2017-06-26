@@ -3,6 +3,7 @@ import * as Server from "./Server";
 
 import { SwiperContainer } from "./SwiperContainer";
 import { SwiperSlide } from "./SwiperSlide";
+import { Back } from "./Back";
 import { Inspect } from "./Inspect";
 import { Personal } from "./dataModel/Personal";
 import { Registered } from "./dataModel/Registered";
@@ -71,81 +72,75 @@ export class App extends React.Component<Props, State> {
         });
         // console.info("提升 的 数据回调事件", value);
     }
+    subTxt = "保存成功！";
     //提交数据
-    onSubmit(state?: boolean) {
-        console.log(this);
-        const Personal = (this.refs.Personal as any).check();
-        if (!Personal.$Valid) {
-            return layer.open({
-                content: Personal.$ErrorMsg
-                , btn: '我知道了'
-            });
-        }
-        const Registered = (this.refs.Registered as any).check();
-        if (!Registered.$Valid) {
-            return layer.open({
-                content: Registered.$ErrorMsg
-                , btn: '我知道了'
-            });
-        }
-        const Contact = (this.refs.Contact as any).check();
-        if (!Contact.$Valid) {
-            return layer.open({
-                content: Contact.$ErrorMsg
-                , btn: '我知道了'
-            });
-        }
+    onSubmit(state?: string) {
+        this.subTxt = "保存成功！";
+        console.log(this.state.Model);
+        // return;
+        let xhr = new XMLHttpRequest();
+        // 回调
+        xhr.onload = () => {
+            let response = JSON.parse(xhr.response);
+            if (response.code == 0) {
+                setTimeout(() => {
+                    this.onCheckThrough("Submit");
+                    layer.closeAll();
+                }, 1000);
+            } else {
+                layer.closeAll();
+                layer.open({
+                    content: response.data,
+                    btn: '我知道了'
+                });
+            }
+        };
+        xhr.open('POST', "/api/user/save", true);
+        xhr.setRequestHeader("Accept", "application/json, text/plain, */*");
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        // state = submit 为 提交数据   否则为保存草稿  保存草稿不需要验证输入
+        if (state == 'submit') {
+            this.subTxt = "提交成功！";
+            const Personal = (this.refs.Personal as any).check();
+            if (!Personal.$Valid) {
+                return layer.open({
+                    content: Personal.$ErrorMsg
+                    , btn: '我知道了'
+                });
+            }
+            const Registered = (this.refs.Registered as any).check();
+            if (!Registered.$Valid) {
+                return layer.open({
+                    content: Registered.$ErrorMsg
+                    , btn: '我知道了'
+                });
+            }
+            const Contact = (this.refs.Contact as any).check();
+            if (!Contact.$Valid) {
+                return layer.open({
+                    content: Contact.$ErrorMsg
+                    , btn: '我知道了'
+                });
+            }
 
-        const Education = (this.refs.Education as any).check();
-        if (!Education.$Valid) {
-            return layer.open({
-                content: Education.$ErrorMsg
-                , btn: '我知道了'
-            });
+            const Education = (this.refs.Education as any).check();
+            if (!Education.$Valid) {
+                return layer.open({
+                    content: Education.$ErrorMsg
+                    , btn: '我知道了'
+                });
+            }
         }
-        return;
-        // let xhr = new XMLHttpRequest();
-        // xhr.onload = () => {
-        //     let response = JSON.parse(xhr.response);
-        //     if (response.code == 0) {
-        //         setTimeout(() => {
-        //             this.onCheckThrough("Submit");
-        //             layer.closeAll();
-        //         }, 1000);
-        //     } else {
-        //         layer.closeAll();
-        //         layer.open({
-        //             content: response.data,
-        //             btn: '我知道了'
-        //         });
-        //     }
-        // };
-        // xhr.open('POST', "/api/user/save", true);
-        // xhr.setRequestHeader("Accept", "application/json, text/plain, */*");
-        // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        // // state = ture 为 提交数据   否则为保存草稿  保存草稿不需要验证输入
-        // if (state) {
-        //     this.check();
-        //     if (Server.Verification.$Valid) {
-        //         layer.open({ type: 2 });
-        //         xhr.send(this.getModel(state));
-        //     } else {
-        //         layer.open({
-        //             content: Server.Verification.$ErrorMsg
-        //             , btn: '我知道了'
-        //         });
-        //     }
-        // } else {
-        //     layer.open({ type: 2 });
-        //     xhr.send(this.getModel(state));
-        // }
+        layer.open({ type: 2 });
+        xhr.send(this.getModel(state));
 
     }
-    getModel(state?: boolean): string {
+    getModel(state?: string): string {
         let Model: any = {
             uniquecode: this.state.User.uniquecode,
             status: state,//保存状态
             //个人信息
+            avatar: this.state.Model.Personal.Avatar,
             name_display: this.state.Model.Personal.Name,
             birth_dt: this.state.Model.Personal.Birthday,
             yx_mar_status: this.state.Model.Personal.Marriage,
@@ -186,36 +181,42 @@ export class App extends React.Component<Props, State> {
     render() {
         // 验证
         if (this.state.CheckThrough == "Inspect") {
-            return <SwiperContainer CheckThrough={this.state.CheckThrough}>
-                <Inspect onCheckThrough={this.onCheckThrough}></Inspect>
-            </SwiperContainer>;
+            return <div>
+                <Back></Back>
+                <SwiperContainer CheckThrough={this.state.CheckThrough}>
+                    <Inspect onCheckThrough={this.onCheckThrough}></Inspect>
+                </SwiperContainer>
+            </div>;
         }
         //填写
         if (this.state.CheckThrough == "FillIn") {
-            return <SwiperContainer CheckThrough={this.state.CheckThrough}>
-                <SwiperSlide hash="pl"><Personal ref="Personal" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="rr"><Registered ref="Registered" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="ct"><Contact ref="Contact" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="fy"><Family ref="Family" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
-                <SwiperSlide hash="en"><Education ref="Education" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
-                <SwiperSlide hash="dl"><Driving ref="Driving" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="wk"><Work ref="Work" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="pp"><Files ref="Files" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
-                <SwiperSlide hash="sm">
-                    <div className="container">
-                        <div className="text-center foot_btn">
-                            <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit(true) }}>提交</button>
-                            <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit(false) }}>保存草稿</button>
+            return <div>
+                <Back></Back>
+                <SwiperContainer CheckThrough={this.state.CheckThrough}>
+                    <SwiperSlide hash="pl"><Personal ref="Personal" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="rr"><Registered ref="Registered" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="ct"><Contact ref="Contact" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="fy"><Family ref="Family" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
+                    <SwiperSlide hash="en"><Education ref="Education" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /> </SwiperSlide>
+                    <SwiperSlide hash="dl"><Driving ref="Driving" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="wk"><Work ref="Work" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="pp"><Files ref="Files" User={this.state.User} onHandleInputChange={this.onHandleInputChange} /></SwiperSlide>
+                    <SwiperSlide hash="sm">
+                        <div className="container">
+                            <div className="text-center foot_btn">
+                                <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("submit") }}>提交</button>
+                                <button type="button" className="btn btn-danger w95" onClick={() => { this.onSubmit("draft") }}>保存草稿</button>
+                            </div>
                         </div>
-                    </div>
-                </SwiperSlide>
-            </SwiperContainer>;
+                    </SwiperSlide>
+                </SwiperContainer>
+            </div>;
         }
         //提交
         if (this.state.CheckThrough == "Submit") {
             return <SwiperContainer CheckThrough={this.state.CheckThrough}>
                 <SwiperSlide>
-                    <h1>提交成功！</h1>
+                    <h1>{this.subTxt}</h1>
                 </SwiperSlide>
             </SwiperContainer>;
         }

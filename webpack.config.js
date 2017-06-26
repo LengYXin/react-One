@@ -1,7 +1,7 @@
 var webpack = require('webpack');
-var apiUrl = "http://myhr-uat.daikuan.com/"
+var apiUrl = "http://offer-uat.daikuan.com"
 module.exports = {
-    entry: "./src_Redux/index.tsx",
+    entry: "./src/index.tsx",
     output: {
         filename: "build.js",
         path: __dirname + "/www/dist",
@@ -18,7 +18,11 @@ module.exports = {
                 secure: false,
                 changeOrigin: true,
             },
-
+            '/images/': {
+                target: apiUrl,
+                secure: false,
+                changeOrigin: true,
+            },
             '/api/': {
                 target: apiUrl,
                 secure: false,
@@ -38,12 +42,21 @@ module.exports = {
     },
 
     module: {
-        rules: [
-            { test: /\.css$/, use: ['style-loader?sourceMap=true&url=false', 'css-loader?sourceMap=true&url=false'] },
+        rules: [{
+                test: /\.css$/,
+                use: ['style-loader?sourceMap=true&url=false', 'css-loader?sourceMap=true&url=false']
+            },
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "ts-loader" },
+            {
+                test: /\.tsx?$/,
+                loader: "awesome-typescript-loader"
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }
         ]
     },
 

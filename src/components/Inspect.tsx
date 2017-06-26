@@ -83,6 +83,7 @@ export class Inspect extends React.Component<any, any> {
     GetQueryString(name: any) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
+        console.log(reg, r);
         if (r != null)
             return r[2];
         return null;
@@ -90,12 +91,16 @@ export class Inspect extends React.Component<any, any> {
     render() {
 
         return <SwiperSlide className="swiper-slide swiper-conter">
-            <div className="container minH500">
-                <div className="header entry_login">
-                    <h4>欢迎来到易鑫</h4>
-                </div>
-                <div className="form-hor-Login">
-                    {/*<div className='form-group row'>
+                <div className="Welcomepages">
+                    <div className="logo_yxjt"><a href='#'><img src="./img/logo_yxjt.png" /></a></div>
+                    <div className="welcome">
+                            <img src="./img/Welcome.png" />
+                    </div>
+                    <h4>欢迎来到易鑫集团信息采集平台</h4>
+                    <h5>Your Dream，We Care.</h5>
+                   
+                    <div className="form-hor-Login">
+                        {/*<div className='form-group row'>
                         <div className="col-lg-4 help-block text-r c39 ft16">手机号：<span className="ce85 text-vsub">*</span></div>
                         <div className="col-lg-4">
                             <input type="text" className="form-control" name="phone" placeholder="请输入您留给HR的手机号"
@@ -110,12 +115,17 @@ export class Inspect extends React.Component<any, any> {
                         </div>
                     </div>*/}
 
-                    <div className="form-group row text-center">
-                        <button type="submit" className="btn btn-danger" onClick={this.onInspect}>进入</button>
+                        <div className="form-group row text-center">
+                            <button type="submit" className="btn_ljjr" onClick={this.onInspect}>立即进入</button>
+                        </div>
+                    </div>
+                    <div className="yx_text">
+                        <p>为了使您顺利入职，请您仔细阅读并填写以下材料 : </p>
+                        <p>1. 信息登记 : 点击按钮进入，免去您手动填写资料的环节，方便快捷。请务必于两日内完成并提交。</p>
+                        <p>2. 如有任何疑问，请致电021-12345678的人事服务咨询热线，邮箱 : hrssc1@yxqiche.com</p>
                     </div>
                 </div>
-            </div>
-        </SwiperSlide>
+            </SwiperSlide>
             ;
     }
 }

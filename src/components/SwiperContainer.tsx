@@ -11,7 +11,7 @@ export class SwiperContainer extends React.Component<any, any> {
         console.log("SwiperContainer 加载", this);
     }
     componentWillUnmount() {
-        this.swiper.destroy(false, true);
+        // this.swiper.destroy(false, true);
         console.log("SwiperContainer 销毁", this);
     }
     componentDidUpdate(prevProps: any, prevState: any) {
